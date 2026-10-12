@@ -1,0 +1,16 @@
+# systemd service for Linux / Raspberry Pi. See README.md for how to install it.
+# Replace YOUR_USER and the paths if you cloned somewhere other than your home folder.
+[Unit]
+Description=biblebot Discord bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=YOUR_USER
+WorkingDirectory=/home/YOUR_USER/biblebot
+ExecStart=/home/YOUR_USER/biblebot/.venv/bin/python -m biblebot
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
